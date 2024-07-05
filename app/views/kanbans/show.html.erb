@@ -1,0 +1,17 @@
+<div class='kanban flex flex-col gap-4' data-id="<%= @kanban.id %>">
+  <p style="color: green"><%= notice %></p>
+
+  <%= render 'shared/breadcrumb', path: kanbans_path, text: 'Back to Kanbans' %>
+
+  <%= render @kanban %>
+
+  <div class='flex flex-row gap-4'>
+    <%= link_to "Edit", edit_kanban_path(@kanban), class: 'min-w-24 px-4 py-2 border border-gray-400 rounded-md text-center hover:bg-gray-100 transition-colors'%>
+    <%= button_to "Destroy", @kanban, method: :delete, class: 'min-w-24 px-4 py-2 rounded-md bg-red-500 hover:bg-red-400 text-white transition-colors' %>
+    <%= link_to "New Column", new_kanban_kanban_column_path(@kanban), class: 'min-w-24 px-4 py-2 border border-gray-400 rounded-md text-center hover:bg-gray-100 transition-colors' %>
+  </div>
+
+  <div class='h-full w-full flex flex-row gap-4 overflow-y-auto'>
+    <%= render partial: 'kanban_columns/kanban_column', collection: @columns, as: :column %>
+  </div>
+</div>

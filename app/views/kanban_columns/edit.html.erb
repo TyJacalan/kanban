@@ -1,0 +1,7 @@
+<div class='flex flex-col gap-4'>
+  <%= render 'shared/breadcrumb', path: kanban_path(@kanban), text: "Back to #{@kanban.name}" %>
+
+  <h1>Edit Column</h1>
+
+  <%= render "form", kanban: @kanban, kanban_column: @kanban_column %>
+</div>

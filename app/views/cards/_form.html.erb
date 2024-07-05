@@ -1,0 +1,19 @@
+<%= form_with(model: [@kanban, @kanban_column, @card]) do |form| %>
+  <div class='w-96 flex flex-col gap-4'>
+    <% if @card.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@card.errors.count, "error") %> prohibited this kanban from being saved:</h2>
+        <ul>
+          <% @card.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+
+    <%= form.submit class: 'px-4 py-2 bg-blue-600 text-gray-100 rounded-md hover:bg-blue-500 hover:cursor-pointer' %>
+  </div>
+<% end %>

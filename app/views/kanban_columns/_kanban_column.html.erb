@@ -1,0 +1,29 @@
+<div class='group h-full w-full flex flex-col gap-4 p-6 rounded-md bg-slate-200 shadow-md'>
+  <div class='flex flex-row items-center gap-2'>
+    <h4><%= column.name %></h4>
+    <%= link_to edit_kanban_kanban_column_path(@kanban, column), class: 'hidden group-hover:block text-slate-900' do %>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+      </svg>
+    <% end %>
+    <%= button_to kanban_kanban_column_path(@kanban, column), method: :delete, class: 'hidden group-hover:block text-slate-900' do %>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    <% end %>
+  </div>
+  <ul class='kanban-column flex flex-col gap-4' data-id="<%= column.id %>">
+    <% column.cards.each do |card| %>
+      <li class='kanban-column-item p-6 rounded-md bg-slate-100 hover:cursor-grab active:cursor-grabbing' data-id="<%= card.id %>">
+        <%= link_to kanban_kanban_column_card_path(@kanban, column, card) do %>
+          <%= card.content %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to new_kanban_kanban_column_card_path(@kanban, column), class: 'w-full flex justify-center text-slate-700 p-2 rounded-md hover:shadow-md hover:bg-slate-300' do %>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+    </svg>
+  <% end %>
+</div>
